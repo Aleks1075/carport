@@ -29,9 +29,10 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/">Om os</a>
-                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/">Vareliste</a>
-                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/">Ny Bruger</a>
+                    <a class="nav-link disabled" style="color: white" href="#">${sessionScope.user.email}</a>
+                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/">Materialeliste</a>
+                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/">Alle kunder</a>
+                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/">Opret ny admin</a>
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/login.jsp">Login</a>
                     </c:if>
