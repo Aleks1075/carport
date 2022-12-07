@@ -4,14 +4,13 @@ import java.util.Objects;
 
 public class User
 {
-    private String password;
-    private int userId;
-    private String role;
     private String username;
-    private String address;
-    private int postalCode;
-    private String phoneNo;
     private String email;
+    private String password;
+    private String address;
+    private String role;
+    private int postCode;
+    private int phoneNumber;
 
     public User() {
     }
@@ -22,45 +21,14 @@ public class User
         this.role = role;
     }
 
-    public User(String username, String address, int postalCode, String phoneNo, String email) {
+    public User(String username, String email, String password, String address, String role, int postCode, int phoneNumber) {
         this.username = username;
-        this.address = address;
-        this.postalCode = postalCode;
-        this.phoneNo = phoneNo;
-        this.email = email;
-    }
-
-    public User(String username, String address, int postalCode, String phoneNo, String email, String password) {
-        this.username = username;
-        this.address = address;
-        this.postalCode = postalCode;
-        this.phoneNo = phoneNo;
         this.email = email;
         this.password = password;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
+        this.address = address;
         this.role = role;
+        this.postCode = postCode;
+        this.phoneNumber = phoneNumber;
     }
 
     public String getUsername() {
@@ -71,6 +39,22 @@ public class User
         this.username = username;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -79,28 +63,28 @@ public class User
         this.address = address;
     }
 
-    public int getPostalCode() {
-        return postalCode;
+    public String getRole() {
+        return role;
     }
 
-    public void setPostalCode(int postalCode) {
-        this.postalCode = postalCode;
+    public void setRole(String role) {
+        this.role = role;
     }
 
-    public String getPhoneNo() {
-        return phoneNo;
+    public int getPostCode() {
+        return postCode;
     }
 
-    public void setPhoneNo(String phoneNo) {
-        this.phoneNo = phoneNo;
+    public void setPostCode(int postCode) {
+        this.postCode = postCode;
     }
 
-    public String getEmail() {
-        return email;
+    public int getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     @Override
@@ -122,14 +106,13 @@ public class User
     @Override
     public String toString() {
         return "User{" +
-                "password='" + password + '\'' +
-                ", userId=" + userId +
-                ", roleId=" + role +
-                ", name='" + username + '\'' +
-                ", address='" + address + '\'' +
-                ", postalCode=" + postalCode +
-                ", phoneNo='" + phoneNo + '\'' +
+                "username='" + username + '\'' +
                 ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
+                ", role='" + role + '\'' +
+                ", postCode=" + postCode +
+                ", phoneNumber=" + phoneNumber +
                 '}';
     }
 }
