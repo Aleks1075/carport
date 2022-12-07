@@ -17,9 +17,9 @@
 
         <form action="login" method="post">
             <div class="row mb-3">
-                <label class="col-sm-1 col-form-label" for="name">Brugernavn: </label>
+                <label class="col-sm-1 col-form-label" for="username">Brugernavn: </label>
                 <div class="col-sm-4">
-                    <input class="form-control" type="text" id="name" name="name"
+                    <input class="form-control" type="text" id="username" name="username"
                            placeholder="Indtast dit brugernavn"/>
                 </div>
             </div>

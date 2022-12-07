@@ -17,7 +17,7 @@
         <p>You should be logged in now</p>
 
         <c:if test="${sessionScope.user != null}">
-            <p>Hello ${sessionScope.user.name}</p>
+            <p>Hello ${sessionScope.user.username}</p>
             <p>You are logged in with the role of "${sessionScope.user.role}".</p>
         </c:if>
 

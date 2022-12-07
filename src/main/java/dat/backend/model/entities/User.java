@@ -7,7 +7,7 @@ public class User
     private String password;
     private int userId;
     private String role;
-    private String name;
+    private String username;
     private String address;
     private int postalCode;
     private String phoneNo;
@@ -16,22 +16,22 @@ public class User
     public User() {
     }
 
-    public User(String name, String password, String role) {
-        this.name = name;
+    public User(String username, String password, String role) {
+        this.username = username;
         this.password = password;
         this.role = role;
     }
 
-    public User(String name, String address, int postalCode, String phoneNo, String email) {
-        this.name = name;
+    public User(String username, String address, int postalCode, String phoneNo, String email) {
+        this.username = username;
         this.address = address;
         this.postalCode = postalCode;
         this.phoneNo = phoneNo;
         this.email = email;
     }
 
-    public User(String name, String address, int postalCode, String phoneNo, String email, String password) {
-        this.name = name;
+    public User(String username, String address, int postalCode, String phoneNo, String email, String password) {
+        this.username = username;
         this.address = address;
         this.postalCode = postalCode;
         this.phoneNo = phoneNo;
@@ -63,12 +63,12 @@ public class User
         this.role = role;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getAddress() {
@@ -109,14 +109,14 @@ public class User
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return getName().equals(user.getName()) && getPassword().equals(user.getPassword()) &&
+        return getUsername().equals(user.getUsername()) && getPassword().equals(user.getPassword()) &&
                 getRole().equals(user.getRole());
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(getName(), getPassword(), getRole());
+        return Objects.hash(getUsername(), getPassword(), getRole());
     }
 
     @Override
@@ -125,7 +125,7 @@ public class User
                 "password='" + password + '\'' +
                 ", userId=" + userId +
                 ", roleId=" + role +
-                ", name='" + name + '\'' +
+                ", name='" + username + '\'' +
                 ", address='" + address + '\'' +
                 ", postalCode=" + postalCode +
                 ", phoneNo='" + phoneNo + '\'' +
