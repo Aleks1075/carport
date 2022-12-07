@@ -24,7 +24,11 @@ public class ItemList extends HttpServlet
     {
 
         List<Material> materialList = null;
-        materialList = MaterialFacade.getAllMaterials(connectionPool);
+        try {
+            materialList = MaterialFacade.getAllMaterials(connectionPool);
+        } catch (DatabaseException e) {
+            e.printStackTrace();
+        }
         request.setAttribute("materialList", materialList);
 
         request.getRequestDispatcher("WEB-INF/itemlist.jsp").forward(request, response);
