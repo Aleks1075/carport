@@ -18,9 +18,24 @@
                                placeholder="Indtast din brugernavn"/></td>
                 </tr>
                 <tr>
-                    <td><label class="col-sm-1 col-form-label" for="password">Email: </label></td>
+                    <td><label class="col-sm-1 col-form-label" for="email">Email: </label></td>
                     <td><input class="form-control" type="text" id="email" name="email"
                                placeholder="Indtast din email"/></td>
+                </tr>
+                <tr>
+                    <td><label class="col-sm-1 col-form-label" for="address">Adresse: </label></td>
+                    <td><input class="form-control" type="text" id="address" name="address"
+                               placeholder="Indtast din adresse"/></td>
+                </tr>
+                <tr>
+                    <td><label class="col-sm-1 col-form-label" for="postcode">Postnummer: </label></td>
+                    <td><input class="form-control" type="postcode" id="postcode" name="postcode"
+                               placeholder="Indtast din postnummer"/></td>
+                </tr>
+                <tr>
+                    <td><label class="col-sm-1 col-form-label" for="phoneNumber">Tlf. nummer: </label></td>
+                    <td><input class="form-control" type="phoneNumber" id="phoneNumber" name="phoneNumber"
+                               placeholder="Indtast din tlf nummer"/></td>
                 </tr>
                 <tr>
                     <td><label class="col-sm-1 col-form-label" for="password">Adgangskode: </label></td>
@@ -38,9 +53,10 @@
                 </tr>
             </table>
         </form>
+
         <c:if test="${sessionScope.user == null}">
             <p>Skal du lave en kunde bruger? Du kan gøre det her: <a
-                    href="${pageContext.request.contextPath}/createuser.jsp">Lav kunde bruger</a></p>
+                    href="${pageContext.request.contextPath}/createuser.jsp">Lav ny bruger</a></p>
         </c:if>
 
     </jsp:body>
