@@ -9,7 +9,7 @@ public class User
     private String password;
     private String address;
     private String role;
-    private int postCode;
+    private int postcode;
     private int phoneNumber;
 
     public User() {
@@ -21,13 +21,13 @@ public class User
         this.role = role;
     }
 
-    public User(String username, String email, String password, String address, String role, int postCode, int phoneNumber) {
+    public User(String username, String email, String password, String address, String role, int postcode, int phoneNumber) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.address = address;
         this.role = role;
-        this.postCode = postCode;
+        this.postcode = postcode;
         this.phoneNumber = phoneNumber;
     }
 
@@ -71,12 +71,12 @@ public class User
         this.role = role;
     }
 
-    public int getPostCode() {
-        return postCode;
+    public int getPostcode() {
+        return postcode;
     }
 
-    public void setPostCode(int postCode) {
-        this.postCode = postCode;
+    public void setPostcode(int postcode) {
+        this.postcode = postcode;
     }
 
     public int getPhoneNumber() {
@@ -93,14 +93,15 @@ public class User
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return getUsername().equals(user.getUsername()) && getPassword().equals(user.getPassword()) &&
-                getRole().equals(user.getRole());
+        return getUsername().equals(user.getUsername()) && getEmail().equals(user.getEmail()) && getPassword().equals(user.getPassword()) &&
+                getAddress().equals(user.getAddress()) && getRole().equals(user.getRole()) && getPostcode() == user.getPostcode() &&
+                getPhoneNumber() == user.getPhoneNumber();
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(getUsername(), getPassword(), getRole());
+        return Objects.hash(getUsername(), getEmail(), getPassword(), getAddress(), getRole(), getPostcode(), getPhoneNumber());
     }
 
     @Override
@@ -111,7 +112,7 @@ public class User
                 ", password='" + password + '\'' +
                 ", address='" + address + '\'' +
                 ", role='" + role + '\'' +
-                ", postCode=" + postCode +
+                ", postcode=" + postcode +
                 ", phoneNumber=" + phoneNumber +
                 '}';
     }

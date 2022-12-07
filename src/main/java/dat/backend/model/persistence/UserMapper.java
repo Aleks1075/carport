@@ -40,34 +40,32 @@ class UserMapper
         return user;
     }
 
-    static User createUser(String name, String password, String role, ConnectionPool connectionPool) throws DatabaseException
-    {
+
+    public static User createUser(String username, String email, String password, String address, String role, int postcode, int phoneNumber, ConnectionPool connectionPool) throws DatabaseException {
         Logger.getLogger("web").log(Level.INFO, "");
-        User user;
-        String sql = "insert into user (username, password, role) values (?,?,?)";
+
+        User user = null;
+
+        String sql = "INSERT INTO user (username, email, password, address, role, postcode, phone_number) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
         try (Connection connection = connectionPool.getConnection())
         {
             try (PreparedStatement ps = connection.prepareStatement(sql))
             {
-                ps.setString(1, name);
-                ps.setString(2, password);
-                ps.setString(3, role);
-                int rowsAffected = ps.executeUpdate();
-                if (rowsAffected == 1)
-                {
-                    user = new User(name, password, role);
-                } else
-                {
-                    throw new DatabaseException("The user with name = " + name + " could not be inserted into the database");
-                }
+                ps.setString(1, username);
+                ps.setString(2, email);
+                ps.setString(3, password);
+                ps.setString(4, address);
+                ps.setString(5, role);
+                ps.setInt(6, postcode);
+                ps.setInt(7, phoneNumber);
+                ps.executeUpdate();
+                user = new User(username, email, password, address, role, postcode, phoneNumber);
             }
-        }
-        catch (SQLException ex)
+        } catch (SQLException ex)
         {
-            throw new DatabaseException(ex, "Could not insert username into database");
+            throw new DatabaseException(ex, "Error creating user. Something went wrong with the database");
         }
         return user;
     }
-
-
 }
