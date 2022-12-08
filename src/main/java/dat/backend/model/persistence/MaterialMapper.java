@@ -35,4 +35,52 @@ public class MaterialMapper
             throw new DatabaseException("Could not get all materials");
         }
     }
+
+    public static List<Material> getAllWood(ConnectionPool connectionPool) throws DatabaseException {
+        List<Material> materialList = new ArrayList<>();
+        String sql = "select * from material where type = 'træ & tagplader'";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int materialId = rs.getInt("material_id");
+                    String description = rs.getString("description");
+                    String type = rs.getString("type");
+                    String unit = rs.getString("unit");
+                    double unit_price = rs.getDouble("unit_price");
+                    Material tmpMaterial = new Material (materialId, description, type, unit, unit_price);
+                    materialList.add(tmpMaterial);
+                }
+                return materialList;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DatabaseException("Could not get all wood");
+        }
+    }
+
+    public static List<Material> getAllAccessory(ConnectionPool connectionPool) throws DatabaseException {
+        List<Material> materialList = new ArrayList<>();
+        String sql = "select * from material where type = 'beslag & skruer'";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int materialId = rs.getInt("material_id");
+                    String description = rs.getString("description");
+                    String type = rs.getString("type");
+                    String unit = rs.getString("unit");
+                    double unit_price = rs.getDouble("unit_price");
+                    Material tmpMaterial = new Material (materialId, description, type, unit, unit_price);
+                    materialList.add(tmpMaterial);
+                }
+                return materialList;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DatabaseException("Could not get all accessories");
+        }
+    }
 }

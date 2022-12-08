@@ -54,11 +54,6 @@
             </table>
         </form>
 
-        <c:if test="${sessionScope.user == null}">
-            <p>Skal du lave en kunde bruger? Du kan gøre det her: <a
-                    href="${pageContext.request.contextPath}/createuser.jsp">Lav ny bruger</a></p>
-        </c:if>
-
     </jsp:body>
 
 </t:pagetemplate>

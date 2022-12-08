@@ -54,11 +54,6 @@
             </table>
         </form>
 
-        <c:if test="${sessionScope.user == null}">
-            <p>Skal du lave en admin bruger? Du kan gøre det her: <a
-                    href="${pageContext.request.contextPath}/createadmin.jsp">Lav admin bruger</a></p>
-        </c:if>
-
     </jsp:body>
 
 </t:pagetemplate>

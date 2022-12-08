@@ -12,7 +12,6 @@ public class UserFacade
         return UserMapper.login(username, password, connectionPool);
     }
 
-
     public static User createUser(String username, String email, String password, String address, String role, int postcode, int phoneNumber, ConnectionPool connectionPool) throws DatabaseException
     {
         return UserMapper.createUser(username, email, password, address, role, postcode, phoneNumber, connectionPool);
@@ -21,5 +20,10 @@ public class UserFacade
     public static List<User> getAllUsers(ConnectionPool connectionPool) throws DatabaseException
     {
         return UserMapper.getAllUsers(connectionPool);
+    }
+
+    public static void deleteUser(String username, ConnectionPool connectionPool) throws DatabaseException
+    {
+        UserMapper.deleteUser(username, connectionPool);
     }
 }

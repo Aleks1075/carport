@@ -30,14 +30,14 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link disabled" style="color: white" href="#">${sessionScope.user.email}</a>
-                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/itemlist">Materialeliste</a>
-                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/">Alle kunder</a>
+                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/itemlist">Materialer</a>
+                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/customerlist">Kunder</a>
                     <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/createadmin.jsp">Opret ny admin</a>
                     <c:if test="${sessionScope.user == null }">
-                        <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/login.jsp">Login</a>
+                        <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/login.jsp">Log ind</a>
                     </c:if>
                     <c:if test="${sessionScope.user != null }">
-                        <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/logout">Log out</a>
+                        <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/logout">Log ud</a>
                     </c:if>
                 </div>
             </div>

@@ -39,11 +39,6 @@
             <p>Har du ikke nogen bruger? Du kan gøre det her: <a
                     href="${pageContext.request.contextPath}/createuser.jsp">Lav ny bruger</a></p>
         </c:if>
-        <br>
-        <c:if test="${sessionScope.user == null}">
-            <p>Log ind med admin bruger her: <a
-                    href="${pageContext.request.contextPath}/adminlogin.jsp">Log ind som admin</a></p>
-        </c:if>
 
     </jsp:body>
 </t:pagetemplate>

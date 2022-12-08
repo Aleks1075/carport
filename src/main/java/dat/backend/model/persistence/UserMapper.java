@@ -80,7 +80,7 @@ class UserMapper
 
         List<User> users = new ArrayList<>();
 
-        String sql = "SELECT * FROM user";
+        String sql = "SELECT * FROM user WHERE role = 'Customer'";
 
         try (Connection connection = connectionPool.getConnection())
         {
@@ -105,5 +105,23 @@ class UserMapper
             throw new DatabaseException(ex, "Error getting all users. Something went wrong with the database");
         }
         return users;
+    }
+
+    public static void deleteUser(String username, ConnectionPool connectionPool) throws DatabaseException {
+        Logger.getLogger("web").log(Level.INFO, "");
+
+        String sql = "DELETE FROM user WHERE username = ?";
+
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setString(1, username);
+                ps.executeUpdate();
+            }
+        } catch (SQLException ex)
+        {
+            throw new DatabaseException(ex, "Error deleting user. Something went wrong with the database");
+        }
     }
 }

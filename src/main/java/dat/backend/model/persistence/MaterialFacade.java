@@ -10,4 +10,14 @@ public class MaterialFacade {
     {
         return MaterialMapper.getAllMaterials(connectionPool);
     }
+
+    public static List<Material> getAllWood(ConnectionPool connectionPool) throws DatabaseException
+    {
+        return MaterialMapper.getAllWood(connectionPool);
+    }
+
+    public static List<Material> getAllAccessory(ConnectionPool connectionPool) throws DatabaseException
+    {
+        return MaterialMapper.getAllAccessory(connectionPool);
+    }
 }

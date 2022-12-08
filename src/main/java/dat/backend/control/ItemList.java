@@ -31,6 +31,22 @@ public class ItemList extends HttpServlet
         }
         request.setAttribute("materialList", materialList);
 
+        List<Material> woodList = null;
+        try {
+            woodList = MaterialFacade.getAllWood(connectionPool);
+        } catch (DatabaseException e) {
+            e.printStackTrace();
+        }
+        request.setAttribute("woodList", woodList);
+
+        List<Material> accessoryList = null;
+        try {
+            accessoryList = MaterialFacade.getAllAccessory(connectionPool);
+        } catch (DatabaseException e) {
+            e.printStackTrace();
+        }
+        request.setAttribute("accessoryList", accessoryList);
+
         request.getRequestDispatcher("WEB-INF/itemlist.jsp").forward(request, response);
 
 

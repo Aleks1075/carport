@@ -30,13 +30,12 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/about.jsp">Om os</a>
-                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/">Byg din carport</a>
                     <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/createuser.jsp">Ny Bruger</a>
                     <c:if test="${sessionScope.user == null }">
-                        <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/login.jsp">Login</a>
+                        <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/login.jsp">Log ind</a>
                     </c:if>
                     <c:if test="${sessionScope.user != null }">
-                        <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/logout">Log out</a>
+                        <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/logout">Log ud</a>
                     </c:if>
                 </div>
             </div>

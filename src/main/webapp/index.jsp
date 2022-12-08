@@ -37,7 +37,7 @@
                 </div>
             </div>
         </c:if>
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="${pageContext.request.contextPath}/images/billede1.png" class="d-block mx-auto" alt="...">
