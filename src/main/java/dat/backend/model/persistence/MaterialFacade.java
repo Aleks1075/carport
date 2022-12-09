@@ -20,4 +20,19 @@ public class MaterialFacade {
     {
         return MaterialMapper.getAllAccessory(connectionPool);
     }
+
+    public static void updateMaterialPrice(int material_id, double price, ConnectionPool connectionPool)
+    {
+        MaterialMapper.updateMaterialPrice(material_id, price, connectionPool);
+    }
+
+    public static void addMaterial(Material material, ConnectionPool connectionPool)
+    {
+        MaterialMapper.addMaterial(material, connectionPool);
+    }
+
+    public static void deleteMaterial(int material_id, ConnectionPool connectionPool)
+    {
+        MaterialMapper.deleteMaterial(material_id, connectionPool);
+    }
 }

@@ -17,6 +17,14 @@ public class Material
         this.unit_price = unit_price;
     }
 
+    public Material(String description, String type, String unit, double unit_price)
+    {
+        this.description = description;
+        this.type = type;
+        this.unit = unit;
+        this.unit_price = unit_price;
+    }
+
     public int getMaterialId() {
         return materialId;
     }

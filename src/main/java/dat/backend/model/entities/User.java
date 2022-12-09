@@ -31,6 +31,15 @@ public class User
         this.phoneNumber = phoneNumber;
     }
 
+    public User(String username, String email, String address, int postcode, int phone_number)
+    {
+        this.username = username;
+        this.email = email;
+        this.address = address;
+        this.postcode = postcode;
+        this.phoneNumber = phone_number;
+    }
+
     public String getUsername() {
         return username;
     }

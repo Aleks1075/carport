@@ -10,8 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MaterialMapper
-{
+public class MaterialMapper {
     public static List<Material> getAllMaterials(ConnectionPool connectionPool) throws DatabaseException {
         List<Material> materialList = new ArrayList<>();
         String sql = "select * from material";
@@ -25,7 +24,7 @@ public class MaterialMapper
                     String type = rs.getString("type");
                     String unit = rs.getString("unit");
                     double unit_price = rs.getDouble("unit_price");
-                    Material tmpMaterial = new Material (materialId, description, type, unit, unit_price);
+                    Material tmpMaterial = new Material(materialId, description, type, unit, unit_price);
                     materialList.add(tmpMaterial);
                 }
                 return materialList;
@@ -49,7 +48,7 @@ public class MaterialMapper
                     String type = rs.getString("type");
                     String unit = rs.getString("unit");
                     double unit_price = rs.getDouble("unit_price");
-                    Material tmpMaterial = new Material (materialId, description, type, unit, unit_price);
+                    Material tmpMaterial = new Material(materialId, description, type, unit, unit_price);
                     materialList.add(tmpMaterial);
                 }
                 return materialList;
@@ -73,7 +72,7 @@ public class MaterialMapper
                     String type = rs.getString("type");
                     String unit = rs.getString("unit");
                     double unit_price = rs.getDouble("unit_price");
-                    Material tmpMaterial = new Material (materialId, description, type, unit, unit_price);
+                    Material tmpMaterial = new Material(materialId, description, type, unit, unit_price);
                     materialList.add(tmpMaterial);
                 }
                 return materialList;
@@ -81,6 +80,49 @@ public class MaterialMapper
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DatabaseException("Could not get all accessories");
+        }
+    }
+
+    public static void updateMaterialPrice(int material_id, double price, ConnectionPool connectionPool) {
+        String sql = "update material set unit_price = ? where material_id = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setDouble(1, price);
+                ps.setInt(2, material_id);
+                ps.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addMaterial(Material material, ConnectionPool connectionPool) {
+        String sql = "insert into material (description, type, unit, unit_price) values (?, ?, ?, ?)";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, material.getDescription());
+                ps.setString(2, material.getType());
+                ps.setString(3, material.getUnit());
+                ps.setDouble(4, material.getUnit_price());
+                ps.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void deleteMaterial(int material_id, ConnectionPool connectionPool) {
+        String sql = "delete from material where material_id = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, material_id);
+                ps.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

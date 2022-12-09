@@ -27,15 +27,19 @@ public class DeleteCustomer extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        //Delete customer
+        String username = request.getParameter("username");
+        UserFacade.deleteUser(username, connectionPool);
+
+        List<User> customerList = null;
         try {
-            List<User> customerList = UserFacade.getAllUsers(connectionPool);
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        customerList.remove(user);
-        session.setAttribute("customerList", customerList);
-        request.getRequestDispatcher("WEB-INF/admin.jsp").forward(request, response);
+            //Update user list
+            customerList = UserFacade.getAllUsers(connectionPool);
         } catch (DatabaseException e) {
             e.printStackTrace();
         }
+        request.setAttribute("customerList", customerList);
+
+        request.getRequestDispatcher("WEB-INF/customerlist.jsp").forward(request, response);
     }
 }

@@ -107,7 +107,7 @@ class UserMapper
         return users;
     }
 
-    public static void deleteUser(String username, ConnectionPool connectionPool) throws DatabaseException {
+    public static void deleteUser(String username, ConnectionPool connectionPool) {
         Logger.getLogger("web").log(Level.INFO, "");
 
         String sql = "DELETE FROM user WHERE username = ?";
@@ -119,9 +119,50 @@ class UserMapper
                 ps.setString(1, username);
                 ps.executeUpdate();
             }
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static void updateUserPassword(ConnectionPool connectionPool, User user) throws DatabaseException {
+        Logger.getLogger("web").log(Level.INFO, "");
+
+        String sql = "UPDATE user SET password = ? WHERE username = ?";
+
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setString(1, user.getPassword());
+                ps.setString(2, user.getUsername());
+                ps.executeUpdate();
+            }
         } catch (SQLException ex)
         {
-            throw new DatabaseException(ex, "Error deleting user. Something went wrong with the database");
+            throw new DatabaseException(ex, "Error updating user password. Something went wrong with the database");
+        }
+    }
+
+    public static void updateUser(ConnectionPool connectionPool, User user) throws DatabaseException {
+        Logger.getLogger("web").log(Level.INFO, "");
+
+        String sql = "UPDATE user SET email = ?, address = ?, postcode = ?, phone_number = ? WHERE username = ?";
+
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setString(1, user.getEmail());
+                ps.setString(2, user.getAddress());
+                ps.setInt(3, user.getPostcode());
+                ps.setInt(4, user.getPhoneNumber());
+                ps.setString(5, user.getUsername());
+                ps.executeUpdate();
+            }
+        } catch (SQLException ex)
+        {
+            throw new DatabaseException(ex, "Error updating user. Something went wrong with the database");
         }
     }
 }

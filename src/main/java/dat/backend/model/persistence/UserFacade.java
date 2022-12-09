@@ -22,8 +22,18 @@ public class UserFacade
         return UserMapper.getAllUsers(connectionPool);
     }
 
-    public static void deleteUser(String username, ConnectionPool connectionPool) throws DatabaseException
+    public static void deleteUser(String username, ConnectionPool connectionPool)
     {
         UserMapper.deleteUser(username, connectionPool);
+    }
+
+    public static void updateUserPassword(ConnectionPool connectionPool, User user) throws DatabaseException
+    {
+        UserMapper.updateUserPassword(connectionPool, user);
+    }
+
+    public static void updateUser(ConnectionPool connectionPool, User user) throws DatabaseException
+    {
+        UserMapper.updateUser(connectionPool, user);
     }
 }

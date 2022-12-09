@@ -14,6 +14,7 @@
 
     <jsp:body>
 
+        <form action="deletematerial" method="post">
         <h2 class="text-center">Oversigt over alle materialer</h2>
 
         <h3 class="mt-3">Træ & tagplader</h3>
@@ -34,7 +35,12 @@
                     <td>${wood.type}</td>
                     <td>${wood.unit}</td>
                     <td>${wood.unit_price}</td>
-                    <td> <button formaction="deleteitem" name="materialId" value="${material.materialId}" class="btn btn-danger">Fjern</button></td>
+                    <td>
+                        <button class="btn btn-danger btn-sm" type="submit" name="material_id"
+                                value="${wood.materialId}">
+                            Fjern
+                        </button>
+                    </td>
                 </tr>
             </c:forEach>
         </table>
@@ -59,10 +65,82 @@
                     <td>${accessory.type}</td>
                     <td>${accessory.unit}</td>
                     <td>${accessory.unit_price}</td>
-                    <td> <button formaction="deleteitem" name="materialId" value="${material.materialId}" class="btn btn-danger">Fjern</button></td>
+<%--                    <td> <button formaction="deleteitem" name="materialId" value="${material.materialId}" class="btn btn-danger">Fjern</button></td>--%>
+                    <td>
+                        <button class="btn btn-danger btn-sm" type="submit" name="material_id"
+                                value="${accessory.materialId}">
+                            Fjern
+                        </button>
+                    </td>
                 </tr>
             </c:forEach>
         </table>
+        </form>
+
+        <form action="addmaterial" method="post">
+        <div class="row">
+
+            <div class="col-md">
+                <div class="form-group">
+                    <label for="description">Beskrivelse:</label>
+                    <input class="form-control" type="text" id="description" name="description">
+                </div>
+            </div>
+
+            <div class="col-md">
+                <div class="form-group">
+                    <label for="type">Type:</label>
+                    <input class="form-control" type="text" id="type" name="type">
+                </div>
+            </div>
+
+            <div class="col-md">
+                <div class="form-group">
+                    <label for="unit">Enhed:</label>
+                    <input class="form-control" type="text" id="unit" name="unit">
+                </div>
+            </div>
+
+            <div class="col-md">
+                <div class="form-group">
+                    <label for="unit_price">Pris:</label>
+                    <input class="form-control" type="text" id="unit_price" name="unit_price">
+                </div>
+            </div>
+
+            <div class="col-md">
+                <br>
+                <button style="width:100%;" type="submit" class="btn btn-secondary" name="addMaterial"
+                        value="update">Tilføj
+                </button>
+            </div>
+        </div>
+        </form>
+        <br>
+        <form action="updatematerialprice" method="post">
+        <div class="row">
+            <div class="col-md">
+                <div class="form-group">
+                    <label for="material_id">ID:</label>
+                    <input class="form-control" type="text" id="material_id" name="material_id">
+                </div>
+            </div>
+
+            <div class="col-md">
+                <div class="form-group">
+                    <label for="price">Pris:</label>
+                    <input class="form-control" type="text" id="price" name="price">
+                </div>
+            </div>
+
+            <div class="col-md">
+                <br>
+                <button style="width:100%;" type="submit" class="btn btn-secondary" name="update"
+                        value="update">Opdater
+                </button>
+            </div>
+        </div>
+        </form>
 
     </jsp:body>
 

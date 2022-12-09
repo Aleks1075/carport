@@ -14,6 +14,7 @@
 
     <jsp:body>
 
+        <form action="deletecustomer" method="post">
         <h2 class="text-center">Oversigt over alle kunder</h2>
 
         <table class="table table-striped">
@@ -33,11 +34,16 @@
                     <td>${customer.address}</td>
                     <td>${customer.postcode}</td>
                     <td>${customer.phoneNumber}</td>
-                    <td> <button formaction="deletecustomer" name="username" value="${customer.username}" class="btn btn-danger">Slet kunde</button></td>
+                    <td>
+                    <button class="btn btn-danger btn-sm" type="submit" name="username"
+                            value="${customer.username}">
+                        Slet kunde
+                    </button>
+                    </td>
                 </tr>
             </c:forEach>
         </table>
-
+        </form>
     </jsp:body>
 
 </t:admin>
