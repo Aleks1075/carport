@@ -125,4 +125,26 @@ public class MaterialMapper {
             e.printStackTrace();
         }
     }
+
+    public static Material getMaterialById(int i, ConnectionPool connectionPool) {
+        Material material = null;
+        String sql = "select * from material where material_id = ?";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, i);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int materialId = rs.getInt("material_id");
+                    String description = rs.getString("description");
+                    String type = rs.getString("type");
+                    String unit = rs.getString("unit");
+                    double unit_price = rs.getDouble("unit_price");
+                    material = new Material(materialId, description, type, unit, unit_price);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+            return material;
+        }
 }

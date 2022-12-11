@@ -36,6 +36,16 @@ public class Bom {
         this.quantity = quantity;
     }
 
+    public Bom(int materialId, String definition, String description, String unit, double price, int quantity)
+    {
+        this.materialId = materialId;
+        this.definition = definition;
+        this.description = description;
+        this.unit = unit;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
     public int getBomId() {
         return bomId;
     }
