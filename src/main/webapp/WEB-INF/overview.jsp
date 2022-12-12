@@ -34,6 +34,12 @@
         </div>
         <br>
 
+<%--        <a href="svg">Se tegning</a>--%>
+
+        <h4>Se tegning</h4>
+        <h5>${sessionScope.svg}</h5>
+
+
     </jsp:body>
 
 </t:customer>

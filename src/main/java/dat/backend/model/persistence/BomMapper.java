@@ -15,12 +15,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 class BomMapper {
-    public List<Bom> getBomByOrderId(int orderId, ConnectionPool connectionPool) throws DatabaseException {
+    public static List<Bom> getBomByOrderId(int order_id, ConnectionPool connectionPool) throws DatabaseException {
         List<Bom> bomList = new ArrayList<>();
         String sql = "select * from bom where order_id = ?";
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setInt(1, orderId);
+                ps.setInt(1, order_id);
                 ResultSet rs = ps.executeQuery();
                 while (rs.next()) {
                     int materialId = rs.getInt("material_id");
@@ -40,6 +40,21 @@ class BomMapper {
             }
         } catch (SQLException | DatabaseException ex) {
             throw new DatabaseException("Connection to database could not be established");
+        }
+    }
+
+    public static void deleteBom(int order_id, ConnectionPool connectionPool)
+    {
+        String sql = "delete from bom where order_id = ?";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, order_id);
+                ps.executeUpdate();
+            } catch (SQLException ex) {
+                Logger.getLogger(BomMapper.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BomMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -8,6 +8,8 @@ import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.ConnectionPool;
 import dat.backend.model.persistence.OrderFacade;
 import dat.backend.model.services.Calculator;
+import dat.backend.model.services.CarportSVG;
+import dat.backend.model.services.SVGDrawing;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -63,8 +65,8 @@ public class CreateOrder extends HttpServlet {
                 e.printStackTrace();
             }
 
+            //Create order
             orderFacade.createOrder(username, width, length, bomCart.getBomLines(), connectionPool);
-
 
             //Clear bill of materials
             try {
@@ -76,9 +78,25 @@ public class CreateOrder extends HttpServlet {
 
             //Get price from the latest order
             DecimalFormat df = new DecimalFormat("#.##");
-            double price = orderFacade.getPrice(connectionPool);
+            double price = orderFacade.getPriceForLastOrder(connectionPool);
             String formattedPrice = df.format(price);
             session.setAttribute("price", formattedPrice);
+
+
+
+            //Svg
+
+            int order_id = OrderFacade.getOrderIdByTimestamp(connectionPool);
+
+        SVGDrawing carport = CarportSVG.createNewSVG(0, 0, 100, 60, "0 0 855 690");
+        carport = CarportSVG.addPosts(carport, width, length);
+//        carport = CarportSVG.addStraps(carport, width, length);
+//        carport = CarportSVG.addRafters(carport, width, length);
+//        carport = CarportSVG.addHulband(carport, width, length);
+//        carport = CarportSVG.addArrows(carport, width, length);
+
+        session.setAttribute("svg", carport);
+
 
 
             request.getRequestDispatcher("WEB-INF/overview.jsp").forward(request, response);

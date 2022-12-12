@@ -3,23 +3,21 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 
-<t:admin>
+<t:customer>
     <jsp:attribute name="header">
-         Welcome to the logged in area
+         Svg
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-        Logged in area
+        Svg
     </jsp:attribute>
 
     <jsp:body>
 
-        <h1>Logged in area</h1>
+        <h3>Din tegning</h3>
 
-        <p>
-            <a href="<c:url value="/logout" />">Logout</a>
-        </p>
+        ${requestScope.svg}
 
     </jsp:body>
 
-</t:admin>
+</t:customer>

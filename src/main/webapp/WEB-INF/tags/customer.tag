@@ -31,7 +31,7 @@
                 <div class="navbar-nav">
                     <a class="nav-link disabled" style="color: white" href="#">${sessionScope.user.email}</a>
                     <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/redirect">Profil</a>
-                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/">Ordrer</a>
+                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/customerorders">Ordrer</a>
                     <c:if test="${sessionScope.user == null }">
                         <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/login.jsp">Log ind</a>
                     </c:if>

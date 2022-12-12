@@ -2,16 +2,18 @@ package dat.backend.model.persistence;
 
 import dat.backend.model.entities.Bom;
 import dat.backend.model.entities.BomCart;
+import dat.backend.model.entities.Order;
 import dat.backend.model.entities.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderMapper {
     public static void createOrder(String username, int width, int length, List<Bom> bomLines, ConnectionPool connectionPool) {
         double price = 0;
         int order_id = 0;
-        String status = "pending";
+        String status = "Afventer";
 
         for (Bom bom : bomLines) {
             price += bom.getPrice();
@@ -85,8 +87,28 @@ public class OrderMapper {
     }
 
     public static double getTotalPrice(ConnectionPool connectionPool) {
+
         double price = 0;
-        String sql = "SELECT SUM(price) AS total_price FROM `order`";
+        String sql = "SELECT price FROM `order`";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    price += rs.getDouble("price");
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return price;
+    }
+
+    public static double getPriceForLastOrder(ConnectionPool connectionPool) {
+        double price = 0;
+        String sql = "SELECT price FROM `order` ORDER BY order_id DESC LIMIT 1";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -103,15 +125,16 @@ public class OrderMapper {
         return price;
     }
 
-    public static double getPrice(ConnectionPool connectionPool) {
-        double price = 0;
-        String sql = "SELECT price FROM `order` ORDER BY TIMESTAMP DESC";
+    public static int getWidthByOrderId(int order_id, ConnectionPool connectionPool) {
+        int width = 0;
+        String sql = "SELECT carport_width FROM `order` WHERE order_id = ?";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, order_id);
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
-                    price = rs.getDouble("price");
+                    width = rs.getInt("carport_width");
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -119,6 +142,186 @@ public class OrderMapper {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return price;
+        return width;
+    }
+
+    public static int getLengthByOrderId(int order_id, ConnectionPool connectionPool) {
+        int length = 0;
+        String sql = "SELECT carport_length FROM `order` WHERE order_id = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, order_id);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    length = rs.getInt("carport_length");
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return length;
+    }
+
+    public static Order getOrderById(int order_id, ConnectionPool connectionPool) {
+        Order order = null;
+        String sql = "SELECT * FROM `order` WHERE order_id = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, order_id);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    order = new Order(
+                            rs.getInt("order_id"),
+                            rs.getString("username"),
+                            rs.getInt("carport_length"),
+                            rs.getInt("carport_width"),
+                            rs.getString("order_status"),
+                            rs.getDouble("price")
+                    );
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return order;
+    }
+
+    public static int getOrderIdByTimestamp(ConnectionPool connectionPool) {
+        int order_id = 0;
+        String sql = "SELECT order_id FROM `order` ORDER BY TIMESTAMP DESC";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    order_id = rs.getInt("order_id");
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return order_id;
+    }
+
+    public static List<Order> getAllOrdersByUsername(String username, ConnectionPool connectionPool) {
+        List<Order> orders = new ArrayList<>();
+        String sql = "SELECT * FROM `order` WHERE username = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, username);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    orders.add(new Order(
+                            rs.getInt("order_id"),
+                            rs.getString("username"),
+                            rs.getTimestamp("order_date"),
+                            rs.getInt("carport_length"),
+                            rs.getInt("carport_width"),
+                            rs.getString("order_status"),
+                            rs.getDouble("price")
+                    ));
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return orders;
+    }
+
+    public static Order getOrder(int order_id, ConnectionPool connectionPool) {
+        Order order = null;
+        String sql = "SELECT * FROM `order` WHERE order_id = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, order_id);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    order = new Order(
+                            rs.getInt("order_id"),
+                            rs.getString("username"),
+                            rs.getTimestamp("order_date"),
+                            rs.getInt("carport_length"),
+                            rs.getInt("carport_width"),
+                            rs.getString("order_status"),
+                            rs.getDouble("price")
+                    );
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return order;
+    }
+
+    public static List<Order> getAllOrders(ConnectionPool connectionPool) {
+        List<Order> orders = new ArrayList<>();
+        String sql = "SELECT * FROM `order`";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    orders.add(new Order(
+                            rs.getInt("order_id"),
+                            rs.getString("username"),
+                            rs.getTimestamp("order_date"),
+                            rs.getInt("carport_length"),
+                            rs.getInt("carport_width"),
+                            rs.getString("order_status"),
+                            rs.getDouble("price")
+                    ));
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return orders;
+    }
+
+    public static void deleteOrder(int order_id, ConnectionPool connectionPool) {
+        String sql = "DELETE FROM `order` WHERE order_id = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, order_id);
+                ps.executeUpdate();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void updateStatusToConfirmed(int order_id, ConnectionPool connectionPool) {
+        String status = "Godkendt";
+        String sql = "UPDATE `order` SET order_status = ? WHERE order_id = ?";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, status);
+                ps.setInt(2, order_id);
+                ps.executeUpdate();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }

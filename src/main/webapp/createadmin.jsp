@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
-<t:pagetemplate>
+<t:admin>
     <jsp:attribute name="header">
          Opret admin bruger
     </jsp:attribute>
@@ -56,4 +56,4 @@
 
     </jsp:body>
 
-</t:pagetemplate>
+</t:admin>

@@ -30,6 +30,7 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link disabled" style="color: white" href="#">${sessionScope.user.email}</a>
+                    <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/adminorders">Ordrer</a>
                     <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/itemlist">Materialer</a>
                     <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/customerlist">Kunder</a>
                     <a class="nav-item nav-link" style="color: white" href="${pageContext.request.contextPath}/createadmin.jsp">Opret ny admin</a>
