@@ -24,7 +24,7 @@
             <th>Beskrivelse</th>
             <th>Type</th>
             <th>Enhed</th>
-            <th>Pris per enhed</th>
+            <th>Pris per enhed/meter</th>
             <th></th>
             </thead>
 

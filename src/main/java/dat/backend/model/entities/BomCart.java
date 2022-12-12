@@ -17,4 +17,9 @@ public class BomCart {
     public void addToBill(Bom bom) {
         bomList.add(bom);
     }
+
+    public void resetBomCart()
+    {
+        bomList.clear();
+    }
 }

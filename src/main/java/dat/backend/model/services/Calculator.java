@@ -7,9 +7,38 @@ import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.ConnectionPool;
 import dat.backend.model.persistence.MaterialFacade;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Calculator {
 
     private static ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
+
+    public List<Bom> calculateCarport(int width, int length) throws DatabaseException
+    {
+        List<Bom> bomList = new ArrayList<>();
+
+        bomList.add(calculatePosts(width, length));
+        bomList.add(calculateStraps(width, length));
+        bomList.add(calculateRafters(width, length));
+        bomList.add(calculateUndersternBoardsFrontAndBack(width, length));
+        bomList.add(calculateUndersternBoardsSides(width, length));
+        bomList.add(calculateOversternBoardsFront(width, length));
+        bomList.add(calculateOversternBoardsSides(width, length));
+        bomList.add(calculateWaterBoardSides(width, length));
+        bomList.add(calculateWaterBoardFront(width, length));
+        bomList.add(calculateRoofPlates(width, length));
+        bomList.add(calculateBottomScrews(width, length));
+        bomList.add(calculateHulband(width, length));
+        bomList.add(calculateUniversalRight(width, length));
+        bomList.add(calculateUniversalLeft(width, length));
+        bomList.add(calculateScrewsForSternAndWaterBoard(width, length));
+        bomList.add(calculateHingeScrews(width, length));
+        bomList.add(calculateBoardBolt(width, length));
+        bomList.add(calculateSquareDiscs(width, length));
+
+        return bomList;
+    }
 
     //Beregn stolper
     public Bom calculatePosts(int width, int length) throws DatabaseException {
@@ -20,10 +49,7 @@ public class Calculator {
         String unit = material.getUnit();
         int lengthOfPosts = 300;
         int quantity = 4;
-        double price = 0;
-        for (int i = 0; i < quantity; i++) {
-            price += material.getUnit_price();
-        }
+        double price = (lengthOfPosts/100) * quantity * material.getUnit_price();
 
         Bom bom = new Bom(materialId, definition, description, unit, lengthOfPosts, price, quantity);
         return bom;
@@ -31,7 +57,7 @@ public class Calculator {
     }
 
     //Beregn remme
-    public Bom calcualteStraps(int width, int length) throws DatabaseException {
+    public Bom calculateStraps(int width, int length) throws DatabaseException {
         Material material = MaterialFacade.getMaterialById(9, connectionPool);
         int materialId = material.getMaterialId();
         String definition = "Remme i sider, sædles ned i stolper";
@@ -42,10 +68,7 @@ public class Calculator {
         if (lengthOfStraps > 600) {
             quantity += 1;
         }
-        double price = 0;
-        for (int i = 0; i < quantity; i++) {
-            price += material.getUnit_price();
-        }
+        double price = (lengthOfStraps/100) * quantity * material.getUnit_price();
 
         Bom bom = new Bom(materialId, definition, description, unit, lengthOfStraps, price, quantity);
         return bom;
@@ -64,10 +87,7 @@ public class Calculator {
         double endRafter = numberOfRafter + 1;
         int quantity = (int) endRafter;
         //Beregner pris for spær
-        double price = 0;
-        for (int i = 0; i < quantity; i++) {
-            price += material.getUnit_price();
-        }
+        double price = (lengthOfRafters/100) * quantity * material.getUnit_price();
 
         Bom bom = new Bom(materialId, definition, description, unit, lengthOfRafters, price, quantity);
         return bom;
@@ -312,7 +332,7 @@ public class Calculator {
     }
 
     //Beregn firkantskiver
-    public Bom calculateSquareWashers(int width, int length) throws DatabaseException {
+    public Bom calculateSquareDiscs(int width, int length) throws DatabaseException {
         Material material = MaterialFacade.getMaterialById(22, connectionPool);
         int materialId = material.getMaterialId();
         String definition = "Til montering af rem på stolper";
