@@ -110,6 +110,10 @@
                 <a href="customerorders" class="btn btn-primary">Tilbage til ordrer</a>
             </div>
             <br>
+            <div class="center" align="center">
+                <h3>Tegning</h3>
+                <a href="svg">Se tegning</a>
+            </div>
         </form>
     </jsp:body>
 

@@ -10,6 +10,7 @@ public class Bom {
     private int length;
     private double price;
     private int quantity;
+    private Order order;
 
     public Bom() {
     }

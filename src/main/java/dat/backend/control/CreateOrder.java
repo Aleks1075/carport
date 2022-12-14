@@ -82,23 +82,6 @@ public class CreateOrder extends HttpServlet {
             String formattedPrice = df.format(price);
             session.setAttribute("price", formattedPrice);
 
-
-
-            //Svg
-
-            int order_id = OrderFacade.getOrderIdByTimestamp(connectionPool);
-
-        SVGDrawing carport = CarportSVG.createNewSVG(0, 0, 100, 60, "0 0 855 690");
-        carport = CarportSVG.addPosts(carport, width, length);
-//        carport = CarportSVG.addStraps(carport, width, length);
-//        carport = CarportSVG.addRafters(carport, width, length);
-//        carport = CarportSVG.addHulband(carport, width, length);
-//        carport = CarportSVG.addArrows(carport, width, length);
-
-        session.setAttribute("svg", carport);
-
-
-
             request.getRequestDispatcher("WEB-INF/overview.jsp").forward(request, response);
     }
 }
