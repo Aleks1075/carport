@@ -27,7 +27,7 @@ public class Svg extends HttpServlet {
         Locale.setDefault(new Locale("US"));
 
         // Get order_id from request
-        int order_id = 1;
+        int order_id = 6;
 
         // Get order from database
         Order order = OrderFacade.getOrder(order_id, connectionPool);
@@ -79,6 +79,5 @@ public class Svg extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
-
     }
 }
