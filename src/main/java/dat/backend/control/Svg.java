@@ -27,7 +27,7 @@ public class Svg extends HttpServlet {
         Locale.setDefault(new Locale("US"));
 
         // Get order_id from request
-        int order_id = Integer.parseInt(request.getParameter("order_id"));
+        int order_id = 1;
 
         // Get order from database
         Order order = OrderFacade.getOrder(order_id, connectionPool);
