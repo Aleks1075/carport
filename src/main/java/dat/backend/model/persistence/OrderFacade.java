@@ -3,6 +3,8 @@ package dat.backend.model.persistence;
 import dat.backend.model.entities.Bom;
 import dat.backend.model.entities.Order;
 
+import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class OrderFacade
@@ -55,6 +57,11 @@ public class OrderFacade
     public static void updateStatusToConfirmed(int order_id, ConnectionPool connectionPool)
     {
         OrderMapper.updateStatusToConfirmed(order_id, connectionPool);
+    }
+
+    public static int getOrderId(Order order, ConnectionPool connectionPool)
+    {
+        return OrderMapper.getOrderId(order, connectionPool);
     }
 
     public void createOrder(String username, int width, int length, List<Bom> bomLines, ConnectionPool connectionPool)

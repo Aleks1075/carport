@@ -17,7 +17,7 @@
         <div class="row">
 
         </div>
-        <div class="center">
+        <div class="center" align="center">
 
 
             <h1>Din ordre er registreret.</h1>
@@ -33,13 +33,14 @@
             <h3>${sessionScope.price},-</h3>
         </div>
         <br>
-
-<%--        <a href="svg">Se tegning</a>--%>
-
-        <h4>Se tegning</h4>
-        ${requestScope.svg}
-
-
+        <div class="col-md center" align="center">
+            <h4>Når din ordre bliver godkendt af Fog, får du adgang til styklisten på denne side.</h4>
+        </div>
+        <br>
+        <div class="center" align="center">
+            <h3>Tegning</h3>
+            <a href="svg" class="btn btn-success">Se tegning</a>
+        </div>
     </jsp:body>
 
 </t:customer>

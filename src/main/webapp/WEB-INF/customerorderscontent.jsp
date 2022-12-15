@@ -112,7 +112,7 @@
             <br>
             <div class="center" align="center">
                 <h3>Tegning</h3>
-                <a href="svg">Se tegning</a>
+                <a href="svg" class="btn btn-success">Se tegning</a>
             </div>
         </form>
     </jsp:body>

@@ -39,7 +39,7 @@
                             <td>${order.order_date}</td>
                             <td>${order.price}</td>
                             <td>
-                            <a href="customerorderscontent?order_id=${order.order_id}">Se bestilling</a>
+                            <a href="customerorderscontent?order_id=${order.order_id}" class="btn btn-primary">Se bestilling</a>
                             </td>
                             <td>${order.order_status}</td>
                             <form action="updatestatus" method="post">

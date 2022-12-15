@@ -3,7 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page errorPage="../error.jsp" isErrorPage="false" %>
 
-<t:customer>
+<t:admin>
     <jsp:attribute name="header">
          Svg
     </jsp:attribute>
@@ -14,10 +14,17 @@
 
     <jsp:body>
 
-        <h3>Din tegning</h3>
-
+        <h1>Din tegning</h1>
+        <br>
+        <h3>Set oppefra:</h3>
         ${requestScope.svg}
+        <h3>Set fra siden:</h3>
+        ${requestScope.svgside}
+
+        <div class="col-md center" align="center">
+        <a href="index.jsp" class="btn btn-primary">Tilbage til forsiden</a>
+        </div>
 
     </jsp:body>
 
-</t:customer>
+</t:admin>

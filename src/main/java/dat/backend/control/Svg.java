@@ -27,18 +27,19 @@ public class Svg extends HttpServlet {
         Locale.setDefault(new Locale("US"));
 
         // Get order_id from request
-        int order_id = 6;
+        int order_id = Integer.parseInt(request.getParameter("order_id"));
 
         // Get order from database
-        Order order = OrderFacade.getOrderById(order_id, connectionPool);
+        Order order = OrderFacade.getOrder(order_id, connectionPool);
 
         // Get width and length from order
         int width = order.getCarport_width();
         int length = order.getCarport_length();
 
         // Create new SVGDrawing
-        SVGDrawing carport = CarportSVG.createNewSVG(0, 0, 100, 60, "0 0 855 690");
+        SVGDrawing carport = CarportSVG.createNewSVG(0, 0, 100, 100, "0 0 855 690");
 
+        carport.addRect(45, 45, width, length);
         // Add posts to SVGDrawing
         carport = CarportSVG.addPosts(carport, width, length);
 
@@ -54,7 +55,23 @@ public class Svg extends HttpServlet {
         // Add arrows to SVGDrawing
         carport = CarportSVG.addArrows(carport, width, length);
 
+        //Create new SVGDrawing from side view
+        SVGDrawing carportSide = CarportSVG.createNewSVG(0, 0, 100, 100, "0 0 855 690");
+
+        carportSide.addRect(45, 45, width, length);
+        // Add posts to SVGDrawing
+        carportSide = CarportSVG.addPosts(carportSide, width, length);
+
+        // Add rafters to SVGDrawing
+
+        // Add straps to SVGDrawing
+
+        // Add hulband to SVGDrawing
+
+        // Add arrows to SVGDrawing
+
         // Send SVGDrawing to client
+        request.setAttribute("svgside", carportSide.toString());
         request.setAttribute("svg", carport.toString());
         request.getRequestDispatcher("WEB-INF/svg.jsp").forward(request, response);
     }

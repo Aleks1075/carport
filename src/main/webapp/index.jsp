@@ -32,7 +32,7 @@
                     <div class="info" style="font-size: 20px; font-weight: lighter">
                         <br>
                         <p> Du skal være logget ind for at kunne bestille.</p>
-                        <p> Du kan logge ind her: <a href="login.jsp">Log ind</a></p>
+                        <p> Du kan logge ind her: <a href="login.jsp" class="btn btn-primary">Log ind</a></p>
                     </div>
                 </div>
             </div>

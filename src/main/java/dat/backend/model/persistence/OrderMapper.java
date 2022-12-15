@@ -5,6 +5,7 @@ import dat.backend.model.entities.BomCart;
 import dat.backend.model.entities.Order;
 import dat.backend.model.entities.User;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -323,5 +324,21 @@ public class OrderMapper {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public static int getOrderId(Order order, ConnectionPool connectionPool) {
+String sql = "SELECT FROM `order` WHERE order_id = ?";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setInt(1, order.getOrder_id());
+                ps.executeUpdate();
+                ResultSet rs = ps.getGeneratedKeys();
+                rs.next();
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }

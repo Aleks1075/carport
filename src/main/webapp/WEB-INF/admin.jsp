@@ -5,20 +5,22 @@
 
 <t:admin>
     <jsp:attribute name="header">
-         Welcome to the logged in area
+
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-        Logged in area
+
     </jsp:attribute>
 
     <jsp:body>
 
-        <h1>Logged in area</h1>
+        <div class="col-md center" align="center">
+        <h1>Velkommen til din profil ${sessionScope.user.username}</h1>
+        </div><br>
+        <div class="col-md center" align="center">
+        <img src="${pageContext.request.contextPath}/images/fog.jpeg" class="img-fluid"/>
+        </div>
 
-        <p>
-            <a href="<c:url value="/logout" />">Logout</a>
-        </p>
 
     </jsp:body>
 
