@@ -35,10 +35,11 @@
                     <td>${customer.postcode}</td>
                     <td>${customer.phoneNumber}</td>
                     <td>
-                    <button class="btn btn-danger btn-sm" type="submit" name="username"
-                            value="${customer.username}">
-                        Slet kunde
-                    </button>
+<%--                    <button class="btn btn-danger btn-sm" type="submit" name="username"--%>
+<%--                            value="${customer.username}">--%>
+<%--                        Slet kunde--%>
+                    <button type="submit" class="btn btn-danger" name="username" value="${customer.username}">Slet</button>
+<%--                    </button>--%>
                     </td>
                 </tr>
             </c:forEach>

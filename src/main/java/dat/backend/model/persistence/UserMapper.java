@@ -108,9 +108,7 @@ class UserMapper
     }
 
     public static void deleteUser(String username, ConnectionPool connectionPool) {
-        Logger.getLogger("web").log(Level.INFO, "");
-
-        String sql = "DELETE FROM user WHERE username = ?";
+        String sql = "DELETE FROM `user` WHERE username = ?";
 
         try (Connection connection = connectionPool.getConnection())
         {

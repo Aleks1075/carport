@@ -107,7 +107,12 @@
             </div>
             <br>
             <div class="col-md center" align="center">
-                <a href="customerorders" class="btn btn-primary">Tilbage til ordrer</a>
+                <c:if test="${sessionScope.user.role.equals('Customer')}">
+                    <a href="customerorders" class="btn btn-primary">Tilbage til ordrer</a>
+                </c:if>
+                <c:if test="${sessionScope.user.role.equals('Admin')}">
+                    <a href="adminorders" class="btn btn-primary">Tilbage til ordrer</a>
+                </c:if>
             </div>
             <br>
             <div class="center" align="center">

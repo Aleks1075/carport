@@ -40,6 +40,36 @@
                 </div>
             </div>
         </div>
+        <div class="text-center">
+        <h2>Vores team</h2>
+        </div>
+
+        <div class="card-group">
+            <div class="card">
+                <img src="${pageContext.request.contextPath}/images/chef.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Direktør</h5>
+                    <p class="card-text">Martin Fog</p>
+                    <p class="card-text"><small class="text-muted">martinfog@fog.dk</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="${pageContext.request.contextPath}/images/salgchef.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Salgschef</h5>
+                    <p class="card-text">John Doe</p>
+                    <p class="card-text"><small class="text-muted">johndoe@fog.dk</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="${pageContext.request.contextPath}/images/logistikchef.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Logistikchef</h5>
+                    <p class="card-text">Jane Doe</p>
+                    <p class="card-text"><small class="text-muted">janedoe@fog.dk</small></p>
+                </div>
+            </div>
+        </div>
 
     </jsp:body>
 

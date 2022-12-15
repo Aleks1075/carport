@@ -31,9 +31,9 @@ public class DeleteCustomer extends HttpServlet {
         String username = request.getParameter("username");
         UserFacade.deleteUser(username, connectionPool);
 
-        List<User> customerList = null;
+        //Get all customers
+        List<User> customerList = new ArrayList<>();
         try {
-            //Update user list
             customerList = UserFacade.getAllUsers(connectionPool);
         } catch (DatabaseException e) {
             e.printStackTrace();

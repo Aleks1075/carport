@@ -327,7 +327,7 @@ public class OrderMapper {
     }
 
     public static int getOrderId(Order order, ConnectionPool connectionPool) {
-String sql = "SELECT FROM `order` WHERE order_id = ?";
+        String sql = "SELECT FROM `order` WHERE order_id = ?";
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ps.setInt(1, order.getOrder_id());
