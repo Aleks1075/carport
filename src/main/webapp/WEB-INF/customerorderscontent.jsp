@@ -13,6 +13,13 @@
     </jsp:attribute>
 
     <jsp:body>
+
+        <c:if test="${requestScope.status.equals('Godkendt') && sessionScope.user.role.equals('Customer')}">
+            <div class="col-md center" align="center">
+                <h1>Din ordre er nu betalt og gennemført! </h1>
+            </div>
+        </c:if>
+        <br>
         <form method="post">
         <div class="row">
         <div class="center">
