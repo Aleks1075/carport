@@ -117,7 +117,7 @@
             <br>
             <div class="center" align="center">
                 <h3>Tegning</h3>
-                <a href="svg" name="order_id" value="${requestScope.order.order_id}" class="btn btn-success">Se tegning</a>
+                <td><a href="svg?order_id=${requestScope.order1.order_id}" class="btn btn-success">Se tegning</a></td>
             </div>
         </form>
     </jsp:body>

@@ -27,12 +27,10 @@ public class Svg extends HttpServlet {
         Locale.setDefault(new Locale("US"));
 
         // Get order_id from request
-        int order_id = 6;
+        int order_id = Integer.parseInt(request.getParameter("order_id"));
 
         // Get order from database
         Order order = OrderFacade.getOrderById(order_id, connectionPool);
-
-        request.setAttribute("order_id", order);
 
         // Get width and length from order
         int width = order.getCarport_width();
