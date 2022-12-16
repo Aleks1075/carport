@@ -64,6 +64,16 @@ public class OrderFacade
         return OrderMapper.getOrderId(order, connectionPool);
     }
 
+    public static Order getOrderTest(int order_id, ConnectionPool connectionPool)
+    {
+        return OrderMapper.getOrderTest(order_id, connectionPool);
+    }
+
+    public static void deleteFromOrderAndBom(int order_id, ConnectionPool connectionPool)
+    {
+        OrderMapper.deleteFromOrderAndBom(order_id, connectionPool);
+    }
+
     public void createOrder(String username, int width, int length, List<Bom> bomLines, ConnectionPool connectionPool)
     {
         OrderMapper.createOrder(username, width, length, bomLines, connectionPool);

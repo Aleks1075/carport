@@ -34,13 +34,11 @@
                     <td>${customer.address}</td>
                     <td>${customer.postcode}</td>
                     <td>${customer.phoneNumber}</td>
+                    <form action="deletecustomer" method="post">
                     <td>
-<%--                    <button class="btn btn-danger btn-sm" type="submit" name="username"--%>
-<%--                            value="${customer.username}">--%>
-<%--                        Slet kunde--%>
                     <button type="submit" class="btn btn-danger" name="username" value="${customer.username}">Slet</button>
-<%--                    </button>--%>
                     </td>
+                    </form>
                 </tr>
             </c:forEach>
         </table>

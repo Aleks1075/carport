@@ -117,9 +117,8 @@ class UserMapper
                 ps.setString(1, username);
                 ps.executeUpdate();
             }
-        } catch (SQLException e)
-        {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
 

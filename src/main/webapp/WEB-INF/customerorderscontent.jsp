@@ -37,7 +37,7 @@
             </table>
             <br>
 
-            <c:if test="${!requestScope.status.equals('Godkendt')}">
+            <c:if test="${!requestScope.status.equals('Godkendt') && sessionScope.user.role.equals('Customer')}">
                 <div class="col-md center" align="center">
                 <h4>Når din ordre bliver godkendt af Fog, får du adgang til styklisten på denne side.</h4>
                 </div>
@@ -117,7 +117,7 @@
             <br>
             <div class="center" align="center">
                 <h3>Tegning</h3>
-                <a href="svg" class="btn btn-success">Se tegning</a>
+                <a href="svg" name="order_id" value="${requestScope.order_id}" class="btn btn-success">Se tegning</a>
             </div>
         </form>
     </jsp:body>

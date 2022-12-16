@@ -27,10 +27,12 @@ public class Svg extends HttpServlet {
         Locale.setDefault(new Locale("US"));
 
         // Get order_id from request
-        int order_id = Integer.parseInt(request.getParameter("order_id"));
+        int order_id = 6;
 
         // Get order from database
-        Order order = OrderFacade.getOrder(order_id, connectionPool);
+        Order order = OrderFacade.getOrderTest(order_id, connectionPool);
+
+        request.setAttribute("order", order);
 
         // Get width and length from order
         int width = order.getCarport_width();
@@ -58,17 +60,20 @@ public class Svg extends HttpServlet {
         //Create new SVGDrawing from side view
         SVGDrawing carportSide = CarportSVG.createNewSVG(0, 0, 100, 100, "0 0 855 690");
 
-        carportSide.addRect(45, 45, width, length);
+        // Add overstern to SVGDrawing
+        carportSide = CarportSVG.addStrapsFromSide(carportSide, width, length);
+
+        // Add understern to SVGDrawing
+        carportSide = CarportSVG.addStrapsFromSide2(carportSide, width, length);
+
         // Add posts to SVGDrawing
-        carportSide = CarportSVG.addPosts(carportSide, width, length);
+        carportSide = CarportSVG.addPostsFromSide(carportSide, width, length);
 
-        // Add rafters to SVGDrawing
-
-        // Add straps to SVGDrawing
-
-        // Add hulband to SVGDrawing
+        //Add ground to SVGDrawing
+        carportSide = CarportSVG.addGround(carportSide, width, length);
 
         // Add arrows to SVGDrawing
+        carportSide = CarportSVG.addArrowsFromSide(carportSide, width, length);
 
         // Send SVGDrawing to client
         request.setAttribute("svgside", carportSide.toString());
