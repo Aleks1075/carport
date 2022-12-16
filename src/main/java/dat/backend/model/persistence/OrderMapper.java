@@ -396,4 +396,32 @@ public class OrderMapper {
             ex.printStackTrace();
         }
     }
+
+    public static Order getOrderByOrderId(String username, ConnectionPool connectionPool) {
+        String sql = "SELECT * FROM `order` WHERE username = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, username);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    int id = rs.getInt("order_id");
+                    String username1 = rs.getString("username");
+                    Timestamp order_date = rs.getTimestamp("order_date");
+                    int carport_length = rs.getInt("carport_length");
+                    int carport_width = rs.getInt("carport_width");
+                    String order_status = rs.getString("order_status");
+                    double price = rs.getDouble("price");
+
+                    Order order = new Order(id, username1, order_date, carport_length, carport_width, order_status, price);
+                    return order;
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }

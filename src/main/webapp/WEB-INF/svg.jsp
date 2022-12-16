@@ -19,6 +19,7 @@
         <br>
         <h3>Set oppefra:</h3>
         ${requestScope.svg}
+        <br>
         <h3>Set fra siden:</h3>
         ${requestScope.svgside}
 
