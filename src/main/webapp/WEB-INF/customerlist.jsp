@@ -27,7 +27,7 @@
             <th></th>
             </thead>
 
-            <c:forEach var="customer" items="${sessionScope.customerList}">
+            <c:forEach var="customer" items="${requestScope.customerList}">
                 <tr>
                     <td>${customer.username}</td>
                     <td>${customer.email}</td>
@@ -36,7 +36,7 @@
                     <td>${customer.phoneNumber}</td>
                     <form action="deletecustomer" method="post">
                     <td>
-                    <button type="submit" class="btn btn-danger" name="username" value="${customer.username}">Slet</button>
+                        <button type="submit" class="btn btn-danger" name="username" value="${customer.username}">Slet</button>
                     </td>
                     </form>
                 </tr>
