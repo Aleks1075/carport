@@ -2,9 +2,11 @@ package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.Material;
+import dat.backend.model.entities.Order;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.MaterialFacade;
+import dat.backend.model.persistence.OrderFacade;
 import dat.backend.model.persistence.UserFacade;
 import dat.backend.model.persistence.ConnectionPool;
 
@@ -51,6 +53,8 @@ public class Login extends HttpServlet
             session.setAttribute("materialList", materialList);
             List<User> customerList = UserFacade.getAllUsers(connectionPool);
             session.setAttribute("customerList", customerList);
+            List<Order> order = OrderFacade.getAllOrders(connectionPool);
+            session.setAttribute("order", order);
 
             if(user.getRole().equals("Admin"))
             {

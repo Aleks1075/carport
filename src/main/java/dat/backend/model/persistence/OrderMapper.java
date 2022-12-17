@@ -341,4 +341,87 @@ public class OrderMapper {
         }
         return 0;
     }
+
+    public static Order getOrderTest(int order_id, ConnectionPool connectionPool)
+    {
+        String sql = "SELECT * FROM `order` WHERE order_id = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, order_id);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    int id = rs.getInt("order_id");
+                    String username = rs.getString("username");
+                    Timestamp order_date = rs.getTimestamp("order_date");
+                    int carport_length = rs.getInt("carport_length");
+                    int carport_width = rs.getInt("carport_width");
+                    String order_status = rs.getString("order_status");
+                    double price = rs.getDouble("price");
+
+                    Order order = new Order(id, username, order_date, carport_length, carport_width, order_status, price);
+                    return order;
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+    }
+        return null;
+    }
+
+    public static void deleteFromOrderAndBom(int order_id, ConnectionPool connectionPool) {
+        String sql = "DELETE FROM bom WHERE order_id = ?";
+        String sql2 = "DELETE FROM `order` WHERE order_id = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, order_id);
+                ps.executeUpdate();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql2)) {
+                ps.setInt(1, order_id);
+                ps.executeUpdate();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static Order getOrderByOrderId(String username, ConnectionPool connectionPool) {
+        String sql = "SELECT * FROM `order` WHERE username = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, username);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    int id = rs.getInt("order_id");
+                    String username1 = rs.getString("username");
+                    Timestamp order_date = rs.getTimestamp("order_date");
+                    int carport_length = rs.getInt("carport_length");
+                    int carport_width = rs.getInt("carport_width");
+                    String order_status = rs.getString("order_status");
+                    double price = rs.getDouble("price");
+
+                    Order order = new Order(id, username1, order_date, carport_length, carport_width, order_status, price);
+                    return order;
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }

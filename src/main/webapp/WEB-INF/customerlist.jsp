@@ -27,20 +27,18 @@
             <th></th>
             </thead>
 
-            <c:forEach var="customer" items="${sessionScope.customerList}">
+            <c:forEach var="customer" items="${requestScope.customerList}">
                 <tr>
                     <td>${customer.username}</td>
                     <td>${customer.email}</td>
                     <td>${customer.address}</td>
                     <td>${customer.postcode}</td>
                     <td>${customer.phoneNumber}</td>
+                    <form action="deletecustomer" method="post">
                     <td>
-<%--                    <button class="btn btn-danger btn-sm" type="submit" name="username"--%>
-<%--                            value="${customer.username}">--%>
-<%--                        Slet kunde--%>
-                    <button type="submit" class="btn btn-danger" name="username" value="${customer.username}">Slet</button>
-<%--                    </button>--%>
+                        <button type="submit" class="btn btn-danger" name="username" value="${customer.username}">Slet</button>
                     </td>
+                    </form>
                 </tr>
             </c:forEach>
         </table>

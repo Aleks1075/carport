@@ -70,7 +70,7 @@
             <br>
             <div class="row helvetica">
                 <div class="col-md"></div>
-                <div class="col-md center">
+                <div class="col-md text-center">
                     <button type="submit" name="create" class="btn btn-primary">Send forespørgsel</button>
                 </div>
                 <div class="col-md"></div>

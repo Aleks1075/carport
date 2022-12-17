@@ -13,26 +13,15 @@
     </jsp:attribute>
 
     <jsp:body>
-        <div class="text-center">
-        <h1>Din tegning</h1>
-        </div>
-        <br>
-        <h3>Set oppefra:</h3>
-        ${requestScope.svg}
-        <br>
-        <h3>Set fra siden:</h3>
-        ${requestScope.svgside}
-
 
         <div class="col-md center" align="center">
-            <c:if test="${sessionScope.user.role.equals('Customer')}">
-                <a href="customerorders" class="btn btn-primary">Tilbage til ordrer</a>
-            </c:if>
+        <h1>Ordren er nu slettet fra systemet</h1>
             <c:if test="${sessionScope.user.role.equals('Admin')}">
-                <a href="adminorders" class="btn btn-primary">Tilbage til ordrer</a>
+                <a href="redirectadmin" class="btn btn-primary">Tilbage til forsiden</a>
             </c:if>
         </div>
 
     </jsp:body>
 
 </t:admin>
+

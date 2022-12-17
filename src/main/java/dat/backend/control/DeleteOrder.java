@@ -28,12 +28,11 @@ public class DeleteOrder extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         int order_id = Integer.parseInt(request.getParameter("order_id"));
 
-        OrderFacade.deleteOrder(order_id, connectionPool);
-        OrderFacade.deleteBom(order_id, connectionPool);
+        OrderFacade.deleteFromOrderAndBom(order_id, connectionPool);
 
         List<Order> orderList = null;
         orderList = OrderFacade.getAllOrders(connectionPool);
         request.setAttribute("orderlist", orderList);
-        request.getRequestDispatcher("WEB-INF/adminorders.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/orderisdeleted.jsp").forward(request, response);
     }
 }

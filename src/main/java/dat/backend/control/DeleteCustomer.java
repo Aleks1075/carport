@@ -32,7 +32,7 @@ public class DeleteCustomer extends HttpServlet {
         UserFacade.deleteUser(username, connectionPool);
 
         //Get all customers
-        List<User> customerList = new ArrayList<>();
+        List<User> customerList = null;
         try {
             customerList = UserFacade.getAllUsers(connectionPool);
         } catch (DatabaseException e) {
@@ -40,6 +40,6 @@ public class DeleteCustomer extends HttpServlet {
         }
         request.setAttribute("customerList", customerList);
 
-        request.getRequestDispatcher("WEB-INF/customerlist.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/customerisdeleted.jsp").forward(request, response);
     }
 }

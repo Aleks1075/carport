@@ -30,14 +30,14 @@ public class Svg extends HttpServlet {
         int order_id = 6;
 
         // Get order from database
-        Order order = OrderFacade.getOrder(order_id, connectionPool);
+        Order order = OrderFacade.getOrderById(order_id, connectionPool);
 
         // Get width and length from order
         int width = order.getCarport_width();
         int length = order.getCarport_length();
 
         // Create new SVGDrawing
-        SVGDrawing carport = CarportSVG.createNewSVG(0, 0, 100, 100, "0 0 855 690");
+        SVGDrawing carport = CarportSVG.createNewSVG(0, 0, 100, 100, "0 0 755 550");
 
         carport.addRect(45, 45, width, length);
         // Add posts to SVGDrawing
@@ -56,19 +56,22 @@ public class Svg extends HttpServlet {
         carport = CarportSVG.addArrows(carport, width, length);
 
         //Create new SVGDrawing from side view
-        SVGDrawing carportSide = CarportSVG.createNewSVG(0, 0, 100, 100, "0 0 855 690");
+        SVGDrawing carportSide = CarportSVG.createNewSVG(0, 0, 100, 100, "0 0 755 550");
 
-        carportSide.addRect(45, 45, width, length);
+        // Add overstern to SVGDrawing
+        carportSide = CarportSVG.addStrapsFromSide(carportSide, width, length);
+
+        // Add understern to SVGDrawing
+        carportSide = CarportSVG.addStrapsFromSide2(carportSide, width, length);
+
         // Add posts to SVGDrawing
-        carportSide = CarportSVG.addPosts(carportSide, width, length);
+        carportSide = CarportSVG.addPostsFromSide(carportSide, width, length);
 
-        // Add rafters to SVGDrawing
-
-        // Add straps to SVGDrawing
-
-        // Add hulband to SVGDrawing
+        //Add ground to SVGDrawing
+        carportSide = CarportSVG.addGround(carportSide, width, length);
 
         // Add arrows to SVGDrawing
+        carportSide = CarportSVG.addArrowsFromSide(carportSide, width, length);
 
         // Send SVGDrawing to client
         request.setAttribute("svgside", carportSide.toString());

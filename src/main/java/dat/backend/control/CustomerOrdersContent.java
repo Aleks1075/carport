@@ -29,6 +29,7 @@ public class CustomerOrdersContent extends HttpServlet {
 
         //Get specific order
         Order order = OrderFacade.getOrder(order_id, connectionPool);
+        request.setAttribute("order1", order);
 
         //Get Bill of Materials from specific order.
         List<Bom> bom = null;

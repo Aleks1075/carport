@@ -64,4 +64,51 @@ public class CarportSVG
         carport.addRect((int) (length*0.80)+45, width+12, 11, 11);
         return carport;
     }
+
+    //Oversternbrædder fra siden
+    public static SVGDrawing addStrapsFromSide(SVGDrawing carportSide, int width, int length)
+    {
+        carportSide.addRect(45, 45, 15, length);
+        return carportSide;
+    }
+
+    //Understernbrædder fra siden
+    public static SVGDrawing addStrapsFromSide2(SVGDrawing carportSide, int width, int length)
+    {
+        carportSide.addRect(45, 60, 15, length);
+        return carportSide;
+    }
+
+    //Stolper fra siden
+    public static SVGDrawing addPostsFromSide(SVGDrawing carportSide, int width, int length)
+    {
+        carportSide.addRect((int) (length*0.20)+45, 75, 190, 11);
+        carportSide.addRect((int) (length*0.80)+45, 75, 190, 11);
+        return carportSide;
+    }
+
+    //Jord
+    public static SVGDrawing addGround(SVGDrawing carportSide, int width, int length)
+    {
+        carportSide.addLine(45, 265, length+45, 265);
+        return carportSide;
+    }
+
+    //Pile fra siden
+    public static SVGDrawing addArrowsFromSide(SVGDrawing carportSide, int width, int length)
+    {
+        carportSide.addArrows(15,45,15,265);
+        carportSide.addArrows(35,60,35,265);
+        carportSide.addArrows(45,275+50,length+45,275+50);
+        carportSide.addArrows((int)(length*0.80)+45,275+20,length+45,275+20);
+        carportSide.addArrows(45,275+20,(int) (length*0.20)+45,275+20);
+        carportSide.addArrows((int) (length*0.20)+45,275+20,(int) (length*0.80)+45,275+20);
+        carportSide.addText(12,(220/2)+45,-90, String.valueOf(230) + " cm");
+        carportSide.addText(32,(220/2)+45,-90, String.valueOf(210) + " cm");
+        carportSide.addText(length/2+45,275+40,0,(length + " cm"));
+        carportSide.addText((int) ((length*0.20)/2)+45,275+10,0,((int)(length*0.20) + " cm"));
+        carportSide.addText(length/2*2,275+10,0,((int)(length*0.20) + " cm"));
+        carportSide.addText(length/2+45,275+10,0,((int)(length*0.60) + " cm"));
+        return carportSide;
+    }
 }

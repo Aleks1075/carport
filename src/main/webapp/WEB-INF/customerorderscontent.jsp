@@ -13,6 +13,13 @@
     </jsp:attribute>
 
     <jsp:body>
+
+        <c:if test="${requestScope.status.equals('Godkendt') && sessionScope.user.role.equals('Customer')}">
+            <div class="col-md center" align="center">
+                <h1>Din ordre er nu betalt og gennemført! </h1>
+            </div>
+        </c:if>
+        <br>
         <form method="post">
         <div class="row">
         <div class="center">
@@ -37,7 +44,7 @@
             </table>
             <br>
 
-            <c:if test="${!requestScope.status.equals('Godkendt')}">
+            <c:if test="${!requestScope.status.equals('Godkendt') && sessionScope.user.role.equals('Customer')}">
                 <div class="col-md center" align="center">
                 <h4>Når din ordre bliver godkendt af Fog, får du adgang til styklisten på denne side.</h4>
                 </div>
@@ -117,7 +124,7 @@
             <br>
             <div class="center" align="center">
                 <h3>Tegning</h3>
-                <a href="svg" class="btn btn-success">Se tegning</a>
+                <td><a href="svg?order_id=${requestScope.order1.order_id}" class="btn btn-success">Se tegning</a></td>
             </div>
         </form>
     </jsp:body>
