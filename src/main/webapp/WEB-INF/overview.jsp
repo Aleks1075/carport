@@ -36,11 +36,6 @@
         <div class="col-md center" align="center">
             <h4>Når din ordre bliver godkendt af Fog, får du adgang til styklisten på denne side.</h4>
         </div>
-        <br>
-        <div class="center" align="center">
-            <h3>Tegning</h3>
-            <a href="svg" class="btn btn-success">Se tegning</a>
-        </div>
     </jsp:body>
 
 </t:customer>
