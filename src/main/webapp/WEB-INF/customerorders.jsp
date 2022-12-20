@@ -16,14 +16,14 @@
         <form method="post">
             <div class="Titel" style="margin-left: auto; margin-right: auto; text-align: center;">
             <h2>Ordreoversigt</h2>
-            <table class="table">
+                <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th scope="col">Ordre ID</th>
-                    <th scope="col">Dato og tid</th>
-                    <th scope="col">Pris</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Bestilling</th>
+                    <th>Ordre ID</th>
+                    <th>Dato og tid</th>
+                    <th>Pris</th>
+                    <th>Status</th>
+                    <th>Bestilling</th>
                 </tr>
                 </thead>
                 <tbody>

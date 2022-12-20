@@ -27,7 +27,7 @@
             <div class="col-md center" align="center">
             <h3>Ordre status: ${requestScope.status}</h3>
             </div>
-            <table class="table">
+            <table class="table table-striped">
                 <thead>
                 <tr>
             <th>Valgte bredde</th>
