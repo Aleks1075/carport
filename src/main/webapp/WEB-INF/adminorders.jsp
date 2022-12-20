@@ -19,17 +19,17 @@
 
                 <h1 class="center">Alle ordrer</h1>
 
-                <table class="table">
+                <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th scope="col">Kundenavn</th>
-                        <th scope="col">Ordre ID</th>
-                        <th scope="col">Dato og tid</th>
-                        <th scope="col">Pris</th>
-                        <th scope="col">Bestilling</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Opdater Status</th>
-                        <th scope="col">Fjern</th>
+                        <th>Kundenavn</th>
+                        <th>Ordre ID</th>
+                        <th>Dato og tid</th>
+                        <th>Pris</th>
+                        <th>Bestilling</th>
+                        <th>Status</th>
+                        <th>Opdater Status</th>
+                        <th>Fjern</th>
                     </tr>
                     </thead>
                     <c:forEach var="order" items="${requestScope.orderlist}">

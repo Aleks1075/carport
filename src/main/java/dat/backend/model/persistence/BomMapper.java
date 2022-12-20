@@ -57,32 +57,4 @@ class BomMapper {
             Logger.getLogger(BomMapper.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    public Bom getBomFromOrderByMaterialId(int orderId, int materialId, ConnectionPool connectionPool) throws DatabaseException {
-        Bom bom = null;
-        String sql = "select * from bom where material_id = ?";
-        try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ps.setInt(1, orderId);
-                ps.setInt(2, materialId);
-                ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
-                    String definition = rs.getString("definition");
-                    String description = rs.getString("description");
-                    String unit = rs.getString("unit");
-                    int length = rs.getInt("length");
-                    double price = rs.getDouble("price");
-                    int quantity = rs.getInt("quantity");
-
-                    bom = new Bom(materialId, definition, description, unit, length, price, quantity);
-
-                }
-                return bom;
-            } catch (SQLException ex) {
-                throw new DatabaseException(ex.getMessage());
-            }
-        } catch (SQLException | DatabaseException ex) {
-            throw new DatabaseException("Connection to database could not be established");
-        }
-    }
 }

@@ -68,45 +68,6 @@ public class OrderMapper {
         }
     }
 
-    public static double getOrderPriceByTimestamp(ConnectionPool connectionPool) {
-        double price = 0;
-        String sql = "SELECT price FROM `order` ORDER BY TIMESTAMP DESC";
-
-        try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ResultSet rs = ps.executeQuery();
-                if (rs.next()) {
-                    price = rs.getDouble("price");
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return price;
-    }
-
-    public static double getTotalPrice(ConnectionPool connectionPool) {
-
-        double price = 0;
-        String sql = "SELECT price FROM `order`";
-
-        try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ResultSet rs = ps.executeQuery();
-                while (rs.next()) {
-                    price += rs.getDouble("price");
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return price;
-    }
-
     public static double getPriceForLastOrder(ConnectionPool connectionPool) {
         double price = 0;
         String sql = "SELECT price FROM `order` ORDER BY order_id DESC LIMIT 1";
