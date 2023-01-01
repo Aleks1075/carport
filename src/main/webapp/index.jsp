@@ -16,7 +16,7 @@
             <div class="p-3 mb-2 bg-light text-dark">
                 <div class="Titel" style="margin-left: auto; margin-right: auto; text-align: center;">
                     <h2>Velkommen til FOG</h2>
-                    <div class="info" style="font-size: 20px; font-weight: lighter">
+                    <div class="info" style="font-size: 20px; font-weight: bold">
                         <br>
                         <p> Her hos FOG laver vi din drømme carport til en god pris!</p>
                         <p>Med et særligt program kan vi hurtigt beregne pris og udskrive en skitsetegning på en carport,
@@ -29,7 +29,7 @@
         <c:if test="${sessionScope.user == null}">
             <div class="backgroundcontainer">
                 <div class="Titel" style="margin-left: auto; margin-right: auto; text-align: center;">
-                    <div class="info" style="font-size: 20px; font-weight: lighter">
+                    <div class="info" style="font-size: 20px; font-weight: normal">
                         <br>
                         <p> Du skal være logget ind for at kunne bestille.</p>
                         <p> Du kan logge ind her: <a href="login.jsp" class="btn btn-primary">Log ind</a></p>
@@ -40,13 +40,13 @@
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="${pageContext.request.contextPath}/images/billede1.png" class="d-block mx-auto" alt="...">
+                    <center><img class="d-flex justify-content-center" src="${pageContext.request.contextPath}/images/billede1.png" width="640" height="360" alt="..."></center>
                 </div>
                 <div class="carousel-item">
-                    <img src="${pageContext.request.contextPath}/images/billede2.png" class="d-block mx-auto" alt="...">
+                    <center><img src="${pageContext.request.contextPath}/images/billede2.png" width="640" height="360" alt="..."></center>
                 </div>
                 <div class="carousel-item">
-                    <img src="${pageContext.request.contextPath}/images/billede3.png" class="d-block mx-auto" alt="...">
+                    <center><img src="${pageContext.request.contextPath}/images/billede3.png" width="640" height="360" alt="..."></center>
                 </div>
             </div>
         </div>
