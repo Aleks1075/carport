@@ -30,8 +30,8 @@ public class CarportSVG
     //Remme
     public static SVGDrawing addStraps(SVGDrawing carport, int width, int length)
     {
-            carport.addRect(45, 70, 5, length);
-            carport.addRect(45, width+15, 5, length);
+        carport.addRect(45, 70, 5, length);
+        carport.addRect(45, width+15, 5, length);
         return carport;
     }
 
