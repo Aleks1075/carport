@@ -1,66 +1,92 @@
-# default-web-applikation med page controller
+Johannesfog Carport Project
 
-## Startkode på 2. semester efterår 2022
+Project Overview
 
-Dette repository er lavet i forbindelse med 2. semester på
-Datamatikeruddannelsen i Lyngby og på Bornholm efterår 2022.
+In this project, we developed a dynamic web application for Johannesfog, focusing on the sale of custom-sized carports. One of the key components was creating a calculation engine to handle various carport dimensions chosen by customers. The project aimed to analyze and meet client requirements, work according to Kanban principles, and create user stories with estimates and acceptance criteria.
 
-## Java version
-I pom.xml er diverse dependencies valgt, så projektet kan bygges og køres i Java 8. Nyere versioner af 
-Java vil formentlig også fungere, men vi har kun testet med version 8 og 11.
+The solution is based on a MySQL database and reflects a multi-layer architecture running on a Java server, built using Java classes, servlets, and JSP pages. The project is implemented in the cloud, with the source code available in a GitHub repository. Over the four-week project period, we held four meetings with teachers acting as customer representatives, taking notes and minutes systematically to address any issues encountered.
 
-## Tomcat
-Brug version 9.x
+This project provided a significant learning opportunity, aiming to gain new knowledge and experience in core subjects of the second semester. The final product includes a working web application and a report documenting the process.
 
-## Deployment på Droplet
-T.B.D.
+Background
 
-## Du skal gøre følgende for at få webapplikationen i luften:
+Johannes Fog is a well-established company founded in 1920, with several expansions over the years. Today, it has 9 timber and building centers across Zealand and a Home & Design house in Lyngby. Although they have a functional IT system, it no longer meets modern requirements, which is where our project comes in.
 
-1. Beslut dig for hvad projektets database skal hedde.
-2. Først skal du clone projektet eller downloade en zip-fil med projektet til din arbejdsstation.
-   1. Clone: `git clone git@github.com:jonbertelsen/startcode_2sem_2022.git ditprojektnavn`
-   2. Slet .git folderen, så du kan gøre projektet til dit eget git-projekt
-      1. > `rm -rf .git/`
-   3. Opret dit eget git repository:
-      1. > `git init`
-3. Åbn Workbench og kør en tilpasset (med dit databasenavn i stedet for `startcode`) version af sql-filen `startcode.sql`, som ligger i mappen `resources`. Den opretter en database med en user-tabel og en test-database.
-4. Du skal evt. ændre kodeord til databasen i projektet. Det gøres i filerne: `/persistence/ConnectionPool` i linie 14 og 15. Du skal også ændre i UserMapperTest.
-5. Refactor `startcode` til dit eget projekt alle de steder, hvor det er relevant. Fx her:
-   1. I projektroden
-   2. I pom.xml (`artifactId`og `name` elementerne)
-6. Til sidst skal du lave en Tomcat konfiguration. Dvs, 
-   1. klik på "Add Configuration ..."
-   2. Klik på "+" og vælg "Tomcat Server Local".
-   3. Klik på "Fix knappen"
-   4. Vælg war-exploded som deployment type
-   5. Nu kan du klikke på den grønne play-knap for at bygge og køre projektet.
-7. Lav et repo på GitHub til dit projekt
+In the system we developed, users can register and log in either as a customer or an administrator. Customers can request a carport by selecting the width and length, view ongoing requests, saved orders, carport drawings, and bills to be paid, and subsequently see the bill of materials and carport drawing. Customers can also view and update their profiles to ensure their information is always accurate.
 
-## Bemærkninger
+Administrators can view all orders, see requests for individual orders, approve orders for customer payment, and generate a bill of materials viewable on the customer side after payment. They can also delete orders, view all registered customers, contact them if necessary, and manage materials in stock by adding, updating prices, and removing materials.
 
-### Startkoden indeholder følgende:
+Business Understanding
 
-- Strukturering i passende packages for overblik (MVC). Noget af strukturen er også givet af Maven, og kan ikke laves om. F.eks. opdelingen i `/java` og `/webapp`.
-- Javaservlets
-- JSP sider. Læg dem i WEB-INF som kun skal tilgås via en servlet. Der ligger allerede `welcome.jsp`
-- En super skrabet css-fil til styling
-- Datamapper for user-tabellen, som anvender en connection pool. Den er package-protected
-- En facadeklasse `UserFacade`, der bruges til at tilgå dine mappermetoder
-- Fejlhåndtering med exceptions for databaseoperationer. Den skriver også til Tomcat log.
-- Integrationstest af datamapperen for User.
+A SWOT analysis helped us identify and evaluate our strengths, weaknesses, opportunities, and threats. This analysis provided insights into how to leverage our strengths and address our weaknesses while recognizing opportunities and mitigating potential threats.
 
-### Funktionelt kan applikationen:
+Technology Choices
 
-- Vise en forside med links til undersider, som endnu ikke er lavet
-- Logge en user på. Der findes to brugere i databasen.
-    1. `user` med password: `1234` (rolle: `user`)
-    2. `admin` med password: `1234` (rolle: `admin`)
-- Man kan se på `index.jsp` og `WEB-INF/welcome.jsp` hvordan man kan udnytte om en user er logget på eller ej.
-- Hvis man indtaster ugyldige data under indlogning, bliver man sendt til en en fejlside.
-- Logge en bruger af
-- Metoden `isRoleAllowed(String role, HttpServletRequest request)` som ligger i pakken `services`. Den tjekker om en given bruger matcher en given rolle.
+The technologies used in this project include:
 
-## MVC arkitektur
+IntelliJ IDEA 2021.2.4 (Ultimate Edition)
+MySQL Workbench Version 8.0.28
+Apache Tomcat 9.0.67
+Java version 19
+Corretto 19
+JDBC MySQL connector Version 8.0.30
+JSTL Version 1.2
+Bootstrap 5.0
+Digital Ocean – Linux Ubuntu droplet server
+The project is based on this start code: Start Code
 
-![](documentation/mvc.jpg)# carport
+Workflows to be IT-Supported
+
+As-Is Diagram
+The current workflow at Fog involves customers sending a request for a carport, received via email by an administrator. The administrator reviews the order, contacts the customer if necessary, and enters all information into a program that generates a drawing and bill of materials. Finally, the customer receives an invoice for payment and, upon payment, a building guide with drawing and bill of materials.
+
+To-Be Diagram
+The new system involves customers logging in or creating an account and then sending a request for carport dimensions. Customers can view order status and details on the order page, with the bill of materials visible only after payment.
+
+Administrators can view all registered orders, order details, carport drawings, approve orders for customer payment, and contact customers if necessary. They can also delete orders, view all registered customers, and manage materials in stock.
+
+User Stories
+
+User stories and acceptance criteria are divided into two tables for better overview, one for customer perspective and the other for administrator perspective.
+
+Domain Model, EER Diagram & Class Diagram
+
+These diagrams provide the foundation for our system, representing relationships and interactions between various entities in our domain. The EER diagram shows the setup of our database, and the class diagram illustrates the structure of our system.
+
+Navigation Diagram & Figma
+
+The navigation diagram shows the flow on our website, and the Figma design tool was used to create and visualize user interfaces for our website. The links to our Figma design and other resources can be found under the "Links" section.
+
+Architectural Choices
+
+We used the MVC architecture (Model-View-Controller) to separate different layers of code, making the codebase more manageable and easier to navigate. The start code provided included basic functionalities such as login, logout, home page, and templates.
+
+Special Considerations
+
+Sessions
+We used RequestScope for displaying information or data and SessionScope for user login sessions.
+
+Error Handling
+Basic error handling was implemented, primarily catching SQLExceptions and displaying error messages.
+
+User Input Validation
+Validation was implemented to ensure users fill out all required fields and input correct data types.
+
+Drawing and Bill of Materials Calculation
+Our system generates SVG drawings based on customer-selected dimensions and calculates the bill of materials accordingly.
+
+Implementation Status
+
+We completed all 25 user stories and acceptance criteria. We are satisfied with the result but see potential for further improvements, such as enhancing the payment functionality and implementing additional features.
+
+Process
+
+We used Kanban for project management, with weekly sprints, regular meetings, and systematic note-taking. Effective communication and collaboration were maintained throughout the project using Discord and Trello.
+
+Reflection
+
+The project emphasized the importance of both SYS and coding aspects. Effective communication, collaboration, and structured workflows contributed to the project's success.
+
+Conclusion
+
+The final product is a functioning website that meets customer requirements, along with a comprehensive report documenting the entire process.
